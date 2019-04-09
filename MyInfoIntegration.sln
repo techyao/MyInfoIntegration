@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyInfoIntegration", "MyInfoIntegration\MyInfoIntegration.csproj", "{B49C2D8C-8966-4EBE-9830-745FF8EA3865}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B49C2D8C-8966-4EBE-9830-745FF8EA3865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49C2D8C-8966-4EBE-9830-745FF8EA3865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49C2D8C-8966-4EBE-9830-745FF8EA3865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49C2D8C-8966-4EBE-9830-745FF8EA3865}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBD3D96C-9041-4C15-BB39-AB57BEE3FA6A}
+	EndGlobalSection
+EndGlobal

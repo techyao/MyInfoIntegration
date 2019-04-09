@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Personal Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Personal Info</h2>
+<br />
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Fill in your person info</h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group" style="padding: 10px">
+            <label class="col-xs-2 control-label">Name: </label>
+            <div class="col-xs-10">
+                <input id="inp_name" type="text" class="form-control" data-val="true" data-val-required="Please specify your Name." name="Name" required="required" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group" style="padding: 10px">
+            <label class="col-xs-2 control-label">Gender: </label>
+            <div class="col-xs-10">
+                <input id="inp_gender" type="text" class="form-control" data-val="true" data-val-required="Please specify your gender." name="Gender" required="required" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Gender" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <form id="formAuthorise">
+            <a href="#" onclick="$(this).closest('form').submit()" class="btn2">Retrieve MyInfo</a>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+
+        $("#formAuthorise").submit(function (event) {
+            event.preventDefault();
+            callAuthoriseApi();
+        });
+    });
+
+    function callAuthoriseApi() {
+        $.ajax({
+            url: "http://localhost:3001/api/myinfo/redirecturi",
+            type: "Get",
+            data: { 
+                attributes: "name,sex", 
+                purpose: "MyInfo Integration Demo."
+            },
+            success: function (response) {
+                if (response.status === "OK") {
+                    window.location = response.data;
+                } else {
+                    alert("ERROR:" + JSON.stringify(response.message));
+                }
+            }
+        });
+    }
+
+</script>

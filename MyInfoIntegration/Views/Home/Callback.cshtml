@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Personal Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Personal Info</h2>
+<br />
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Fill in your person info</h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group" style="padding: 10px">
+            <label class="col-xs-2 control-label">Name: </label>
+            <div class="col-xs-10">
+                <input id="inp_name" type="text" class="form-control" data-val="true" data-val-required="Please specify your Name." name="Name" required="required" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group" style="padding: 10px">
+            <label class="col-xs-2 control-label">Gender: </label>
+            <div class="col-xs-10">
+                <input id="inp_gender" type="text" class="form-control" data-val="true" data-val-required="Please specify your gender." name="Gender" required="required" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Gender" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div style="text-align: center; padding: 25px">
+            <button id="btn_info_submit" type="submit" class="btn btn-lg btn-primary" disabled="disabled">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function fillInPersonInfo() {
+        var searchParams = new URLSearchParams(this.location.search);
+        var authCode = searchParams.get("code");
+        var attributes = searchParams.get('scope');
+
+        $.ajax({
+            url: "http://localhost:3001/api/myinfo/callback",
+            data: {
+                code: authCode,
+                scope: attributes
+            },
+            type: "GET",
+            success: function (response) {
+                console.log(response);
+                if (response.status === "OK") {
+                    $('#inp_name').val(response.data.name);
+                    var gender = "";
+                    if (response.data.sex === "F") {
+                        gender = "Female";
+                    } else {
+                        gender = "Male";
+                    }
+                    $('#inp_gender').val(gender);
+                    document.getElementById("btn_info_submit").disabled = false;
+                } else {
+                    // error occured
+                    alert("ERROR:" + JSON.stringify(response.message));
+                }
+
+
+            }
+        });
+    }
+
+    window.onload = fillInPersonInfo;
+
+</script>
